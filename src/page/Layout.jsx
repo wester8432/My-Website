@@ -1,11 +1,11 @@
 import { Outlet } from "react-router";
 import NavBar from "../components/NavBar";
 
-const Layout = () => {
+const Layout = ({ setPopState }) => {
   return (
     <>
       <div className=" sticky top-0  z-10">
-        <NavBar />
+        <NavBar setPopState={setPopState} />
       </div>
 
       <div className=" min-h-svh bg-slate-900">
