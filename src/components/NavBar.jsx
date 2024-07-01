@@ -19,7 +19,7 @@ const NavBar = () => {
             <NavLink>作品集</NavLink>
           </li>
           <li>
-            <NavLink>留言板</NavLink>
+            <NavLink to="/message">留言板</NavLink>
           </li>
         </ul>
       </nav>

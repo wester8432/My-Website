@@ -62,9 +62,7 @@ const Experience = () => {
               <div className=" leading-[40px]  whitespace-pre-wrap">
                 <ul>
                   {exp.description.map((item, index) => (
-                    <li key={index} className=" list-disc">
-                      {item}
-                    </li>
+                    <li key={index}>{item}</li>
                   ))}
                 </ul>
               </div>

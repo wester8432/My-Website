@@ -24,7 +24,7 @@ export default function PlayBar() {
   const [isPlaying, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(30);
-  const [volumeDropDown, setVolumeDropDown] = useState(false);
+  // const [volumeDropDown, setVolumeDropDown] = useState(false);
   const [speedDropDown, setSpeedDropDown] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(1);
   // const { playList, setPlayList } = usePlayList(); // 如果你有一个 usePlayList 钩子，需要导入它并定义

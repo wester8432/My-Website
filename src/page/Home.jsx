@@ -8,7 +8,7 @@ const Home = () => {
   const [switchInfo, setSwitchInfo] = useState("自傳");
   return (
     <>
-      <div className="flex flex-wrap w-full items-center bg-slate-900 pt-4">
+      <div className="flex flex-wrap w-full items-start bg-slate-900 pt-4">
         <div className=" w-1/3 min-w-[330px]  max-[1024px]:w-full">
           <img src={selfPhoto} />
           <div className="flex justify-center text-white">
