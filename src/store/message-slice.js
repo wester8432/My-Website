@@ -4,12 +4,21 @@ const messageSlice = createSlice({
   name: "message",
   initialState: { message: [] },
   reducers: {
-    sendMessage(state, action) {
+    ReplaceMessage(state, action) {
+      state.message = action.payload;
+    },
+    AddMessage(state, action) {
       const name = action.payload.name;
       const message = action.payload.message;
-      state.message.push({ id: Math.random(), name, message });
+      const date = action.payload.date;
+      state.message.push({
+        id: Math.random(),
+        name,
+        message,
+        date,
+      });
     },
-    removeMessage(state, action) {
+    DeleteMessage(state, action) {
       const id = action.payload;
       state.message = state.message.filter((item) => item.id !== id);
     },

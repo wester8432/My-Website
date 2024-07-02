@@ -7,14 +7,24 @@ import PopCon from "./components/PopCon";
 import { useState } from "react";
 function App() {
   const [popState, setPopState] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   return (
     <>
-      {popState && <PopCon setPopState={setPopState} />}
+      {popState && <PopCon setPopState={setPopState} setIsAdmin={setIsAdmin} />}
 
       <Routes>
-        <Route path="/" element={<Layout setPopState={setPopState} />}>
+        <Route
+          path="/"
+          element={
+            <Layout
+              setPopState={setPopState}
+              isAdmin={isAdmin}
+              setIsAdmin={setIsAdmin}
+            />
+          }
+        >
           <Route path="" element={<Home />} />
-          <Route path="/message" element={<Message />} />
+          <Route path="/message" element={<Message isAdmin={isAdmin} />} />
         </Route>
       </Routes>
     </>

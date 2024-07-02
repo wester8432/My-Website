@@ -93,7 +93,7 @@ export default function PlayBar() {
     <>
       <div
         style={{ boxSizing: "border-box" }}
-        className={` bg-[#1495d6] sticky top-0 w-full  h-18 flex justify-start items-center `}
+        className={` bg-[#1495d6] sticky top-0 w-full  h-18 flex justify-start items-center z-10 `}
       >
         <div className="ml-10 w-[7%] flex gap-2 max-[1024px]:w-[13%]">
           <div className=" cursor-pointer ">
@@ -216,13 +216,13 @@ export default function PlayBar() {
         <div className="w-[10%] max-[1024px]:w-[16%]">
           <div className=" flex justify-center relative ">
             <div
-              className="bg-[#1478c5] rounded-full w-16 text-center text-white relative cursor-pointer"
+              className="bg-[#1478c5] rounded-full w-16 text-center text-white  relative cursor-pointer"
               onClick={() => setSpeedDropDown(!speedDropDown)}
             >
               {playbackRate}X
             </div>
             {speedDropDown && (
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 mt-8 bg-white rounded-lg shadow-md z-[998]">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 mt-8 bg-white rounded-lg shadow-md dark:text-black">
                 {[0.25, 0.5, 0.75, 1, 1.5, 1.75, 2].map((speed) => (
                   <div
                     key={speed}
