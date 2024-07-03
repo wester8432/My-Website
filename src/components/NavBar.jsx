@@ -31,7 +31,14 @@ const NavBar = ({ setPopState, isAdmin, setIsAdmin }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink>作品集</NavLink>
+              <NavLink
+                to="/Portfolio"
+                className={({ isActive }) =>
+                  isActive ? " text-[#1495d6] dark:text-yellow-500" : ""
+                }
+              >
+                作品集
+              </NavLink>
             </li>
             <li>
               <NavLink

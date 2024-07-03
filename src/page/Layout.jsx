@@ -17,7 +17,7 @@ const Layout = ({ setPopState, isAdmin, setIsAdmin }) => {
           <Outlet />
         </div>
 
-        <div className=" text-center bg-black text-white">
+        <div className=" text-center bg-slate-300 dark:bg-black">
           Create by N1ro Chen
         </div>
       </div>

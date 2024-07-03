@@ -1,8 +1,8 @@
 import { useState } from "react";
 import selfPhoto from "../assets/1537538731442.jpg";
-import SelfInfo from "./info/SelfInfo";
-import Experience from "./info/Experience";
-import ProjectInfo from "./info/ProjectInfo";
+import SelfInfo from "../SubPage/info/SelfInfo";
+import Experience from "../SubPage/info/Experience";
+import ProjectInfo from "../SubPage/info/ProjectInfo";
 
 const Home = () => {
   const [switchInfo, setSwitchInfo] = useState("自傳");

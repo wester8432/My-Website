@@ -37,7 +37,7 @@ const PopCon = ({ setPopState, setIsAdmin }) => {
   return (
     <div
       onClick={closePopCon}
-      className="z-20 fixed flex justify-center items-center bg-[#ffffff3a] w-svw h-svh"
+      className="z-20 fixed flex justify-center items-center bg-[#ffffff63] w-svw h-svh"
     >
       {/** */}
       <div
