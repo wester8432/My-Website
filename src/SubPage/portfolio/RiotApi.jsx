@@ -230,6 +230,7 @@ const RiotApi = () => {
                               className="w-12 h-12 object-contain"
                               src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${champion.image.full}`}
                               alt={champion.name}
+                              title={champion.name}
                             />
                             <div
                               className={`truncate pl-4 ${
@@ -255,6 +256,7 @@ const RiotApi = () => {
                               className="w-12 h-12 object-contain"
                               src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${champion.image.full}`}
                               alt={champion.name}
+                              title={champion.name}
                             />
                             <div
                               className={`truncate pl-4 ${
