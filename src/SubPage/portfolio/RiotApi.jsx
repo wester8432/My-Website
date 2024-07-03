@@ -129,7 +129,10 @@ const RiotApi = () => {
               const itemImages = items.map((itemId) => {
                 const itemData = item.data[itemId];
                 return itemData
-                  ? `https://ddragon.leagueoflegends.com/cdn/14.13.1/img/item/${itemData.image.full}`
+                  ? {
+                      src: `https://ddragon.leagueoflegends.com/cdn/14.13.1/img/item/${itemData.image.full}`,
+                      title: itemData.name,
+                    }
                   : null;
               });
 
@@ -166,6 +169,7 @@ const RiotApi = () => {
                       <div className="px-2">
                         {/* {championData.name} */}
                         <img
+                          title={championData.name}
                           className="w-20 h-20 object-contain"
                           src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${championData.image.full}`}
                         />
@@ -183,11 +187,13 @@ const RiotApi = () => {
                         className="w-12 h-12 object-contain"
                         src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/spell/${summoner1.image.full}`}
                         alt={summoner1.name}
+                        title={summoner1.name}
                       />
                       <img
                         className="w-12 h-12 object-contain mt-4"
                         src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/spell/${summoner2.image.full}`}
                         alt={summoner2.name}
+                        title={summoner2.name}
                       />
                     </div>
 
@@ -197,8 +203,9 @@ const RiotApi = () => {
                           itemImg ? (
                             <li className=" bg-slate-100">
                               <img
+                                title={itemImg.title}
                                 key={index}
-                                src={itemImg}
+                                src={itemImg.src}
                                 alt={`item-${index}`}
                                 className="w-12 h-12 object-contain"
                               />
@@ -211,11 +218,12 @@ const RiotApi = () => {
                     </div>
                   </div>
 
-                  <div className="flex min-w-[400px] items-center justify-end w-2/5">
-                    <div className="team1 px-4 w-[200px] overflow-hidden whitespace-nowrap">
+                  <div className="flex min-w-[500px] items-center justify-end w-2/5">
+                    <div className="team1 px-4 w-[250px] overflow-hidden whitespace-nowrap">
                       {team1.map((participant, index) => {
                         const champion =
                           championDataByName[participant.championName];
+                        const isCurrentUser = participant.puuid === puuid;
                         return (
                           <div key={index} className="flex items-center pt-2">
                             <img
@@ -224,7 +232,9 @@ const RiotApi = () => {
                               alt={champion.name}
                             />
                             <div
-                              className="truncate"
+                              className={`truncate pl-4 ${
+                                isCurrentUser ? "font-bold text-white" : ""
+                              }`}
                               title={participant.riotIdGameName}
                             >
                               {participant.riotIdGameName}
@@ -234,10 +244,11 @@ const RiotApi = () => {
                       })}
                     </div>
 
-                    <div className="team2 px-4 w-[200px] overflow-hidden whitespace-nowrap">
+                    <div className="team2 px-4 w-[250px] overflow-hidden whitespace-nowrap">
                       {team2.map((participant, index) => {
                         const champion =
                           championDataByName[participant.championName];
+                        const isCurrentUser = participant.puuid === puuid;
                         return (
                           <div key={index} className="flex pt-2 ">
                             <img
@@ -246,7 +257,9 @@ const RiotApi = () => {
                               alt={champion.name}
                             />
                             <div
-                              className="truncate"
+                              className={`truncate pl-4 ${
+                                isCurrentUser ? "font-bold text-white" : ""
+                              }`}
                               title={participant.riotIdGameName}
                             >
                               {participant.riotIdGameName}
