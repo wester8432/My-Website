@@ -38,30 +38,39 @@ const RiotApi = () => {
   }, {});
 
   const RiotSearch = async () => {
+    const config = {
+      headers: {
+        origin: "https://wester8432.github.io/My-WebSite/",
+        "x-requested-with": "XMLHttpRequest",
+      },
+    };
     try {
       const response = await useApi.get(
-        `/riot/asia/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`
+        `https://cors-anywhere.herokuapp.com/https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${api_key}`,
+        config
       );
       const puuid = response.data.puuid;
       setPuuid(puuid);
       console.log({ response: response });
 
-      // const response2 = await useApi.get(
-      //   `/riot/sea/lol/match/v5/matches/by-puuid/${puuid}/ids?=start=0&count=20&api_key=${api_key}`
-      // );
-      // const matchIds = response2.data;
+      const response2 = await useApi.get(
+        `https://cors-anywhere.herokuapp.com/https://sea.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?=start=0&count=20&api_key=${api_key}`,
+        config
+      );
+      const matchIds = response2.data;
 
-      // const responsePromise = matchIds.map((matchId) =>
-      //   useApi.get(
-      //     `/riot/sea/lol/match/v5/matches/${matchId}?api_key=${api_key}`
-      //   )
-      // );
-      // const matchDetailsResponses = await Promise.all(responsePromise);
-      // const matchDetailsData = matchDetailsResponses.map(
-      //   (response) => response.data
-      // );
-      // setMatchs(matchDetailsData);
-      // console.log({ matchDetailsData: matchDetailsData });
+      const responsePromise = matchIds.map((matchId) =>
+        useApi.get(
+          `https://cors-anywhere.herokuapp.com/https://sea.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${api_key}`,
+          config
+        )
+      );
+      const matchDetailsResponses = await Promise.all(responsePromise);
+      const matchDetailsData = matchDetailsResponses.map(
+        (response) => response.data
+      );
+      setMatchs(matchDetailsData);
+      console.log({ matchDetailsData: matchDetailsData });
     } catch (error) {
       console.log({ error: error });
     }
@@ -69,7 +78,7 @@ const RiotApi = () => {
   return (
     <div className="pt-4">
       <div>
-        <p className="pb-4">英雄聯盟 對戰紀錄查詢1020</p>
+        <p className="pb-4">英雄聯盟 對戰紀錄查詢1000</p>
         <label>
           名稱
           <input
@@ -201,7 +210,7 @@ const RiotApi = () => {
                       <ul className="flex gap-1">
                         {itemImages.map((itemImg, index) =>
                           itemImg ? (
-                            <li className=" bg-slate-100">
+                            <li key={index} className=" bg-slate-100">
                               <img
                                 title={itemImg.title}
                                 key={index}
