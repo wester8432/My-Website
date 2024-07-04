@@ -40,43 +40,28 @@ const RiotApi = () => {
   const RiotSearch = async () => {
     try {
       const response = await useApi.get(
-        `/riot/asia/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${api_key}`,
-        {
-          headers: {
-            origin: "https://wester8432.github.io/My-WebSite/#/Portfolio",
-          },
-        }
+        `/riot/asia/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`
       );
       const puuid = response.data.puuid;
       setPuuid(puuid);
       console.log({ response: response });
 
-      const response2 = await useApi.get(
-        `/riot/sea/lol/match/v5/matches/by-puuid/${puuid}/ids?=start=0&count=20&api_key=${api_key}`,
-        {
-          headers: {
-            origin: "https://wester8432.github.io/My-WebSite/#/Portfolio",
-          },
-        }
-      );
-      const matchIds = response2.data;
+      // const response2 = await useApi.get(
+      //   `/riot/sea/lol/match/v5/matches/by-puuid/${puuid}/ids?=start=0&count=20&api_key=${api_key}`
+      // );
+      // const matchIds = response2.data;
 
-      const responsePromise = matchIds.map((matchId) =>
-        useApi.get(
-          `/riot/sea/lol/match/v5/matches/${matchId}?api_key=${api_key}`,
-          {
-            headers: {
-              origin: "https://wester8432.github.io/My-WebSite/#/Portfolio",
-            },
-          }
-        )
-      );
-      const matchDetailsResponses = await Promise.all(responsePromise);
-      const matchDetailsData = matchDetailsResponses.map(
-        (response) => response.data
-      );
-      setMatchs(matchDetailsData);
-      console.log({ matchDetailsData: matchDetailsData });
+      // const responsePromise = matchIds.map((matchId) =>
+      //   useApi.get(
+      //     `/riot/sea/lol/match/v5/matches/${matchId}?api_key=${api_key}`
+      //   )
+      // );
+      // const matchDetailsResponses = await Promise.all(responsePromise);
+      // const matchDetailsData = matchDetailsResponses.map(
+      //   (response) => response.data
+      // );
+      // setMatchs(matchDetailsData);
+      // console.log({ matchDetailsData: matchDetailsData });
     } catch (error) {
       console.log({ error: error });
     }
