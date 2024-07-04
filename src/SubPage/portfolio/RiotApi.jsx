@@ -40,20 +40,35 @@ const RiotApi = () => {
   const RiotSearch = async () => {
     try {
       const response = await useApi.get(
-        `/riot/asia/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${api_key}`
+        `/riot/asia/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${api_key}`,
+        {
+          headers: {
+            origin: "https://wester8432.github.io/My-WebSite/#/Portfolio",
+          },
+        }
       );
       const puuid = response.data.puuid;
       setPuuid(puuid);
       console.log({ response: response });
 
       const response2 = await useApi.get(
-        `/riot/sea/lol/match/v5/matches/by-puuid/${puuid}/ids?=start=0&count=20&api_key=${api_key}`
+        `/riot/sea/lol/match/v5/matches/by-puuid/${puuid}/ids?=start=0&count=20&api_key=${api_key}`,
+        {
+          headers: {
+            origin: "https://wester8432.github.io/My-WebSite/#/Portfolio",
+          },
+        }
       );
       const matchIds = response2.data;
 
       const responsePromise = matchIds.map((matchId) =>
         useApi.get(
-          `/riot/sea/lol/match/v5/matches/${matchId}?api_key=${api_key}`
+          `/riot/sea/lol/match/v5/matches/${matchId}?api_key=${api_key}`,
+          {
+            headers: {
+              origin: "https://wester8432.github.io/My-WebSite/#/Portfolio",
+            },
+          }
         )
       );
       const matchDetailsResponses = await Promise.all(responsePromise);
@@ -69,7 +84,7 @@ const RiotApi = () => {
   return (
     <div className="pt-4">
       <div>
-        <p className="pb-4">英雄聯盟 對戰紀錄查詢</p>
+        <p className="pb-4">英雄聯盟 對戰紀錄查詢1020</p>
         <label>
           名稱
           <input
