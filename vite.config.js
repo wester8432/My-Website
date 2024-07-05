@@ -8,16 +8,19 @@ export default defineConfig({
   server: {
     proxy: {
       "/riot/sea": {
-        target:
-          "https://cors-anywhere.herokuapp.com/https://sea.api.riotgames.com/",
+        target: "https://sea.api.riotgames.com/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/riot\/sea/, ""),
       },
       "/riot/asia": {
-        target:
-          "https://cors-anywhere.herokuapp.com/https://asia.api.riotgames.com/",
+        target: "https://asia.api.riotgames.com/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/riot\/asia/, ""),
+      },
+      "/riot/tw2": {
+        target: "https://tw2.api.riotgames.com/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/riot\/tw2/, ""),
       },
     },
   },

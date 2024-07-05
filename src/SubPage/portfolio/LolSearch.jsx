@@ -3,7 +3,7 @@ import champion from "../../assets/zh_TW/championFull.json";
 import item from "../../assets/zh_TW/item.json";
 import spell from "../../assets/zh_TW/summoner.json";
 import useApi from "../../api";
-const RiotApi = () => {
+const LolSearch = () => {
   const [gameName, setGameName] = useState("");
   const [tagLine, setTagLine] = useState("");
   const [matchs, setMatchs] = useState();
@@ -38,6 +38,8 @@ const RiotApi = () => {
   }, {});
 
   const RiotSearch = async () => {
+    const proxyUrl = "https://cors.eu.org/";
+
     const config = {
       headers: {
         origin: "https://wester8432.github.io/My-WebSite/",
@@ -46,7 +48,7 @@ const RiotApi = () => {
     };
     try {
       const response = await useApi.get(
-        `https://cors-anywhere.herokuapp.com/https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${api_key}`,
+        `${proxyUrl}https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${api_key}`,
         config
       );
       const puuid = response.data.puuid;
@@ -54,14 +56,14 @@ const RiotApi = () => {
       console.log({ response: response });
 
       const response2 = await useApi.get(
-        `https://cors-anywhere.herokuapp.com/https://sea.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?=start=0&count=20&api_key=${api_key}`,
+        `${proxyUrl}https://sea.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?=start=0&count=20&api_key=${api_key}`,
         config
       );
       const matchIds = response2.data;
 
       const responsePromise = matchIds.map((matchId) =>
         useApi.get(
-          `https://cors-anywhere.herokuapp.com/https://sea.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${api_key}`,
+          `${proxyUrl}https://sea.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${api_key}`,
           config
         )
       );
@@ -99,10 +101,14 @@ const RiotApi = () => {
             onChange={(event) => setTagLine(event.target.value)}
           />
         </label>
-        <button className="ml-4 rounded-md bg-sky-300 p-1" onClick={RiotSearch}>
+        <button
+          className="ml-4 rounded-md bg-sky-300 dark:bg-sky-600 p-1"
+          onClick={RiotSearch}
+        >
           搜尋
         </button>
       </div>
+
       <div>
         <ul>
           {matchs &&
@@ -303,4 +309,4 @@ const RiotApi = () => {
   );
 };
 
-export default RiotApi;
+export default LolSearch;
