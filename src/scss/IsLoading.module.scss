@@ -1,0 +1,30 @@
+@keyframes slide-left-right {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.loadingAnimationLeftToRight {
+  display: inline-block;
+  animation: slide-left-right 2s infinite;
+}
+
+@keyframes bounce-up-down {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.loadingAnimationUpToDown {
+  animation: bounce-up-down 1s infinite;
+}

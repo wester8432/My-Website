@@ -54,23 +54,6 @@ const NavBar = ({ setPopState, isAdmin, setIsAdmin }) => {
               <div className="pr-4" onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? <CiLight size={25} /> : <CiDark size={25} />}
               </div>
-              {isAdmin ? (
-                <div
-                  onClick={() => {
-                    setIsAdmin(false);
-                  }}
-                >
-                  登出
-                </div>
-              ) : (
-                <div
-                  onClick={() => {
-                    setPopState(true);
-                  }}
-                >
-                  管理員登入
-                </div>
-              )}
             </li>
           </ul>
         </div>

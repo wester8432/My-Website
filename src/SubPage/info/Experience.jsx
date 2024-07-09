@@ -45,16 +45,13 @@ const Experience = () => {
   return (
     <div className="timeline-container">
       {experiences.map((exp, i) => (
-        <div
-          className="pr-[20px] hover:bg-[#9b9b9b33] min-[767px]:flex"
-          key={i}
-        >
+        <div className="pr-[20px] hover:bg-[#9b9b9b33] flex" key={i}>
           <p className=" flex-wrap flex justify-center text-center mr-[55px] pt-[20px]  leading-[68.4px] font-bold ">
             <span className="w-full">{changeDateFormat(exp.startDate)}</span>
-            <i className="h-2 w-1 bg-white " />
+            <i className="h-2 w-1 bg-slate-300 dark:bg-slate-600" />
             <span className="w-full">{changeDateFormat(exp.endData)}</span>
           </p>
-          <div className=" flex-1 pb-[100px] min-[767px]:border-l-[5px] border-[#E3E3E3] relative min-[767px]:flex justify-between min-[767px]:pl-[90px]">
+          <div className=" flex-1 pb-[100px] border-l-[5px] border-[#E3E3E3] relative min-[767px]:flex justify-between min-[767px]:pl-[90px]">
             <i className="absolute left-3 top-8 transform -translate-x-8 flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full text-white font-bold"></i>
             <div className="min-[767px]:w-[67%] max-[767px]:w-full">
               <p className=" leading-[40px] ">職位:{exp.position}</p>

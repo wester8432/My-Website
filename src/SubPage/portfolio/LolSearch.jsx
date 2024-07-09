@@ -3,13 +3,16 @@ import champion from "../../assets/zh_TW/championFull.json";
 import item from "../../assets/zh_TW/item.json";
 import spell from "../../assets/zh_TW/summoner.json";
 import useApi from "../../api";
+import IsLoading from "../../components/IsLoading";
 const LolSearch = () => {
+  let api_key = import.meta.env.VITE_RIOT_API_KEY;
   const [gameName, setGameName] = useState("");
   const [tagLine, setTagLine] = useState("");
   const [matchs, setMatchs] = useState();
   const [puuid, setPuuid] = useState("");
-  let api_key = import.meta.env.VITE_RIOT_API_KEY;
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [init, setInit] = useState(true);
+  const [error, setError] = useState(null);
   //   const championData = Object.keys(champion.data).map(
   //     (key) => champion.data[key]
   //   );
@@ -38,6 +41,8 @@ const LolSearch = () => {
   }, {});
 
   const RiotSearch = async () => {
+    setInit(false);
+    setIsLoading(true);
     const proxyUrl = "https://cors.eu.org/";
 
     const config = {
@@ -56,7 +61,7 @@ const LolSearch = () => {
       console.log({ response: response });
 
       const response2 = await useApi.get(
-        `${proxyUrl}https://sea.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?=start=0&count=20&api_key=${api_key}`,
+        `${proxyUrl}https://sea.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?=start=0&count=10&api_key=${api_key}`,
         config
       );
       const matchIds = response2.data;
@@ -72,15 +77,63 @@ const LolSearch = () => {
         (response) => response.data
       );
       setMatchs(matchDetailsData);
+      setIsLoading(false);
       console.log({ matchDetailsData: matchDetailsData });
     } catch (error) {
+      let errorMessage = "An error occurred";
+      setIsLoading(false);
       console.log({ error: error });
+      console.log({ errorMes: error.message });
+      setError(error.message);
+
+      if (error.response) {
+        switch (error.response.status) {
+          case 400:
+            errorMessage = "請求失敗";
+            break;
+          case 400:
+            errorMessage = "api_key不存在";
+            break;
+          case 403:
+            errorMessage = "api_key已過期";
+            break;
+          case 404:
+            errorMessage = "找不到使用者";
+            break;
+          case 415:
+            errorMessage = "不支援此資源";
+            break;
+          case 429:
+            errorMessage = "請求過快 請稍後在試";
+            break;
+          case 500:
+            errorMessage = "內部伺服器問題";
+            break;
+          case 500:
+            errorMessage = "取得失敗";
+            break;
+          case 503:
+            errorMessage = "伺服器暫停服務";
+            break;
+          case 504:
+            errorMessage = "請求時間過長";
+            break;
+          default:
+            errorMessage = `Request failed with status code ${error.response.status}`;
+        }
+      }
+      setError(errorMessage);
     }
   };
   return (
     <div className="pt-4">
       <div>
-        <p className="pb-4">英雄聯盟 對戰紀錄查詢1000</p>
+        <p className="pb-4 font-bold">
+          英雄聯盟 對戰紀錄查詢
+          <br />
+          <br />
+          如果沒玩英雄聯盟 可以搜尋N1ro 7414
+        </p>
         <label>
           名稱
           <input
@@ -111,7 +164,14 @@ const LolSearch = () => {
 
       <div>
         <ul>
-          {matchs &&
+          {!init && isLoading ? (
+            <li>
+              <IsLoading text="Is Loading..." />
+            </li>
+          ) : error ? (
+            <li className="mt-4 text-red-500">Error:{error}</li>
+          ) : (
+            matchs &&
             matchs.map((match, i) => {
               //使用者的當場數據
               const userParticipant = match.info.participants.find(
@@ -174,7 +234,7 @@ const LolSearch = () => {
                       : "bg-red-500"
                   } mt-4 flex items-center flex-wrap py-2`}
                 >
-                  <div className="flex w-1/5">
+                  <div className="flex  w-1/2 xl:w-1/5">
                     <div className="pl-4 flex flex-wrap justify-center">
                       <p className="w-full">{match.info.gameMode}</p>
                       <p>遊戲時間:{gameTime(match.info.gameDuration)}</p>
@@ -196,7 +256,7 @@ const LolSearch = () => {
                     </div>
                   </div>
 
-                  <div className="flex w-2/5 justify-center">
+                  <div className="flex  w-1/2 justify-center xl:w-2/5">
                     <div>
                       <img
                         className="w-12 h-12 object-contain"
@@ -216,7 +276,7 @@ const LolSearch = () => {
                       <ul className="flex gap-1">
                         {itemImages.map((itemImg, index) =>
                           itemImg ? (
-                            <li key={index} className=" bg-slate-100">
+                            <li key={index} className=" border-1">
                               <img
                                 title={itemImg.title}
                                 key={index}
@@ -233,7 +293,7 @@ const LolSearch = () => {
                     </div>
                   </div>
 
-                  <div className="flex min-w-[500px] items-center justify-end w-2/5">
+                  <div className="flex min-w-[500px] w-full items-center justify-center mt-8 xl:mt-0xl:justify-end  xl:w-2/5">
                     <div className="team1 px-4 w-[250px] overflow-hidden whitespace-nowrap">
                       {team1.map((participant, index) => {
                         const champion =
@@ -288,7 +348,8 @@ const LolSearch = () => {
                   </div>
                 </li>
               );
-            })}
+            })
+          )}
         </ul>
       </div>
       {/* <ul className="flex flex-wrap gap-4 justify-center">

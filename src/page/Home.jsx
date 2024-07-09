@@ -15,7 +15,7 @@ const Home = () => {
             <ul>
               <li className=" w-full">姓名:陳虹諭</li>
               <li className="w-full">技能:React、Redux</li>
-              <li className="w-full">興趣:遊戲、動畫、財經研究</li>
+              <li className="w-full">興趣:遊戲、動畫、財經研究、音樂</li>
             </ul>
           </div>
         </div>
