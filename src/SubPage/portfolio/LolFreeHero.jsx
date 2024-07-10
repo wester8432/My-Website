@@ -79,6 +79,7 @@ const LolFreeHero = () => {
             errorMessage = "An error occurred";
         }
       }
+      setError(errorMessage);
       console.log(error);
     }
   };

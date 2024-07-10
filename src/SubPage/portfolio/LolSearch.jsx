@@ -25,10 +25,9 @@ const LolSearch = () => {
 
   const championData = Object.values(champion.data);
   const championDataByName = championData.reduce((acc, champion) => {
-    acc[champion.id] = champion;
+    acc[champion.id.toLowerCase()] = champion;
     return acc;
   }, {});
-
   const itemData = Object.values(item.data);
   const itemDataByName = itemData.reduce((acc, item) => {
     acc[item.id] = item;
@@ -76,9 +75,9 @@ const LolSearch = () => {
       const matchDetailsData = matchDetailsResponses.map(
         (response) => response.data
       );
+      console.log({ matchDetailsData: matchDetailsData[2] });
       setMatchs(matchDetailsData);
       setIsLoading(false);
-      console.log({ matchDetailsData: matchDetailsData });
     } catch (error) {
       let errorMessage = "An error occurred";
       setIsLoading(false);
@@ -177,9 +176,10 @@ const LolSearch = () => {
               const userParticipant = match.info.participants.find(
                 (participant) => participant.puuid === puuid
               );
+
               //使用者當場使用英雄
               const championData =
-                championDataByName[userParticipant.championName];
+                championDataByName[userParticipant.championName.toLowerCase()];
 
               //使用者的裝備
               const itemData = championDataByName[userParticipant.itemData];
@@ -286,7 +286,10 @@ const LolSearch = () => {
                               />
                             </li>
                           ) : (
-                            <div className="w-12 h-12 border bg-slate-200"></div>
+                            <li
+                              key={index}
+                              className="w-12 h-12 border bg-slate-200"
+                            ></li>
                           )
                         )}
                       </ul>
@@ -297,24 +300,34 @@ const LolSearch = () => {
                     <div className="team1 px-4 w-[250px] overflow-hidden whitespace-nowrap">
                       {team1.map((participant, index) => {
                         const champion =
-                          championDataByName[participant.championName];
+                          championDataByName[
+                            participant.championName.toLowerCase()
+                          ];
                         const isCurrentUser = participant.puuid === puuid;
+                        console.log({
+                          cham: championDataByName[participant.championName],
+                          champion: participant.championName,
+                        });
                         return (
                           <div key={index} className="flex items-center pt-2">
-                            <img
-                              className="w-12 h-12 object-contain"
-                              src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${champion.image.full}`}
-                              alt={champion.name}
-                              title={champion.name}
-                            />
-                            <div
-                              className={`truncate pl-4 ${
-                                isCurrentUser ? "font-bold text-white" : ""
-                              }`}
-                              title={participant.riotIdGameName}
-                            >
-                              {participant.riotIdGameName}
-                            </div>
+                            {champion && (
+                              <>
+                                <img
+                                  className="w-12 h-12 object-contain"
+                                  src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${champion.image.full}`}
+                                  alt={champion.name}
+                                  title={champion.name}
+                                />
+                                <div
+                                  className={`truncate pl-4 ${
+                                    isCurrentUser ? "font-bold text-white" : ""
+                                  }`}
+                                  title={participant.riotIdGameName}
+                                >
+                                  {participant.riotIdGameName}
+                                </div>
+                              </>
+                            )}
                           </div>
                         );
                       })}
@@ -323,24 +336,30 @@ const LolSearch = () => {
                     <div className="team2 px-4 w-[250px] overflow-hidden whitespace-nowrap">
                       {team2.map((participant, index) => {
                         const champion =
-                          championDataByName[participant.championName];
+                          championDataByName[
+                            participant.championName.toLowerCase()
+                          ];
                         const isCurrentUser = participant.puuid === puuid;
                         return (
                           <div key={index} className="flex pt-2 ">
-                            <img
-                              className="w-12 h-12 object-contain"
-                              src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${champion.image.full}`}
-                              alt={champion.name}
-                              title={champion.name}
-                            />
-                            <div
-                              className={`truncate pl-4 ${
-                                isCurrentUser ? "font-bold text-white" : ""
-                              }`}
-                              title={participant.riotIdGameName}
-                            >
-                              {participant.riotIdGameName}
-                            </div>
+                            {champion && (
+                              <>
+                                <img
+                                  className="w-12 h-12 object-contain"
+                                  src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${champion.image.full}`}
+                                  alt={champion.name}
+                                  title={champion.name}
+                                />
+                                <div
+                                  className={`truncate pl-4 ${
+                                    isCurrentUser ? "font-bold text-white" : ""
+                                  }`}
+                                  title={participant.riotIdGameName}
+                                >
+                                  {participant.riotIdGameName}
+                                </div>
+                              </>
+                            )}
                           </div>
                         );
                       })}
@@ -352,20 +371,6 @@ const LolSearch = () => {
           )}
         </ul>
       </div>
-      {/* <ul className="flex flex-wrap gap-4 justify-center">
-        {championData.map((champion) => {
-          return (
-            <li className=" ">
-              <div className=" bg-slate-200">
-                <p>{champion.name}</p>
-                <img
-                  src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${champion.image.full}`}
-                />
-              </div>
-            </li>
-          );
-        })}
-      </ul> */}
     </div>
   );
 };
