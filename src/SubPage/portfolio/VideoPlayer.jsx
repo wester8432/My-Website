@@ -12,6 +12,11 @@ import video2 from "../../assets/優里 - ドライフラワー _ THE FIRST TAKE
 import video3 from "../../assets/結束バンド - ギターと孤独と蒼い惑星  THE FIRST TAKE.mp4";
 import video4 from "../../assets/緑黄色社会 - Shout Baby _ THE FIRST TAKE.mp4";
 import video5 from "../../assets/DISH__ (北村匠海) - 猫 _ THE FIRST TAKE.mp4";
+import video6 from "../../assets/ウォルピスカーター MV 『泥中に咲く』-(480p).mp4";
+import video7 from "../../assets/ツバサ-(480p).mp4";
+import video8 from "../../assets/ヨルシカ「晴る」×「葬送のフリーレン」SPECIAL MUSIC VIDEO／フリーレンOPテーマアニメMV-(480p).mp4";
+import video9 from "../../assets/月詠み Acoustic Live『逆転劇』『救世主』『生きるよすが』-(480p).mp4";
+
 export default function VideoPlayer() {
   let playlist = [
     {
@@ -33,6 +38,22 @@ export default function VideoPlayer() {
     {
       title: "DISH__ (北村匠海) - 猫 _ THE FIRST TAKE",
       url: video5,
+    },
+    {
+      title: "ウォルピスカーター MV 『泥中に咲く』",
+      url: video6,
+    },
+    {
+      title: "ツバサ",
+      url: video7,
+    },
+    {
+      title: "ヨルシカ「晴る」×「葬送のフリーレン」",
+      url: video8,
+    },
+    {
+      title: "月詠み Acoustic Live『逆転劇』『救世主』『生きるよすが』",
+      url: video9,
     },
   ];
   const [currentAudioIndex, setCurrentAudioIndex] = useState(0);
@@ -232,7 +253,7 @@ export default function VideoPlayer() {
             </li>
             {/**音量控制 */}
             <li
-              className="flex cursor-pointer"
+              className="ml-4 flex cursor-pointer"
               onMouseEnter={() => setVolumeDropDown(true)}
               onMouseLeave={() => setVolumeDropDown(false)}
             >
@@ -249,37 +270,39 @@ export default function VideoPlayer() {
                   onClick={mute}
                 />
               )}
-              {volumeDropDown ? (
-                <div className={`flex w-auto items-center ${style.rangeInput}`}>
+              <div
+                className={`flex w-auto items-center ${style.rangeInput} ease-in-out`}
+              >
+                {volumeDropDown ? (
                   <input
                     type="range"
                     min="0"
                     max="1"
                     step="0.01"
-                    className="hidden lg:block"
+                    className={`hidden lg:block `}
                     value={volume}
                     style={{ color: "blue" }}
                     onChange={handleVolumeChange}
                     aria-label="Volume"
                   />
-                </div>
-              ) : null}
-            </li>
-            {/**播放時間 */}
-            <li className="flex pl-4">
-              <p className="text-white flex-none mr-8">
-                {Math.floor(currentTime / 60)}:
-                {Math.floor(currentTime % 60)
-                  .toString()
-                  .padStart(2, "0")}{" "}
-                /
-                <span className="text-white pl-4">
-                  {Math.floor(audioState.duration / 60)}:
-                  {Math.floor(audioState.duration % 60)
+                ) : null}
+              </div>
+              {/**播放時間 */}
+              <div className="flex pl-4 cursor-text">
+                <p className="text-white flex-none mr-8">
+                  {Math.floor(currentTime / 60)}:
+                  {Math.floor(currentTime % 60)
                     .toString()
-                    .padStart(2, "0")}
-                </span>
-              </p>
+                    .padStart(2, "0")}{" "}
+                  /
+                  <span className="text-white pl-4">
+                    {Math.floor(audioState.duration / 60)}:
+                    {Math.floor(audioState.duration % 60)
+                      .toString()
+                      .padStart(2, "0")}
+                  </span>
+                </p>
+              </div>
             </li>
           </ul>
           {/**視窗控制 */}
@@ -308,6 +331,7 @@ export default function VideoPlayer() {
                   onClick={() => {
                     setCurrentAudioIndex(i);
                     setCurrentAudio(ele);
+                    setPlaying(true);
                   }}
                   title={ele.title}
                 >
