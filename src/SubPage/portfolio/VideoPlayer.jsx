@@ -7,32 +7,27 @@ import { FaVolumeMute } from "react-icons/fa";
 import { IoPlayForwardSharp, IoPlayBackSharp } from "react-icons/io5";
 import style from "../../scss/PlayBar.module.scss";
 import ReactPlayer from "react-player";
-import video1 from "../../assets/月詠み Acoustic Live『逆転劇』『救世主』『生きるよすが』-(1080p).mp4";
-import video2 from "../../assets/MyGO無路矢NoroshiMyGO 4th LIVE前へ進む音の中でより_1080p.mp4";
-import video3 from "../../assets/DISH 北村匠海  猫  THE FIRST TAKE_1440p.mp4";
-import video4 from "../../assets/緑黄色社会  Shout Baby  THE FIRST TAKE_1080p.mp4";
-import video5 from "../../assets/WANDS  世界が終るまでは  THE FIRST TAKE_1440p.mp4";
+import video1 from "../../assets/WANDS - 世界が終るまでは….mp4";
+import video2 from "../../assets/優里 - ドライフラワー _ THE FIRST TAKE.mp4";
+import video3 from "../../assets/結束バンド - ギターと孤独と蒼い惑星  THE FIRST TAKE.mp4";
+import video4 from "../../assets/緑黄色社会 - Shout Baby _ THE FIRST TAKE.mp4";
 export default function VideoPlayer() {
   let playlist = [
     {
-      title: "月詠み Acoustic Live『逆転劇』『救世主』『生きるよすが』",
+      title: "WANDS - 世界が終るまでは…",
       url: video1,
     },
     {
-      title: "MyGO無路矢NoroshiMyGO 4th LIVE前へ進む音の中でより",
+      title: "優里 - ドライフラワー",
       url: video2,
     },
     {
-      title: "DISH 北村匠海  猫  THE FIRST TAKE",
+      title: "結束バンド - ギターと孤独と蒼い惑星",
       url: video3,
     },
     {
       title: "緑黄色社会  Shout Baby  THE FIRST TAKE",
       url: video4,
-    },
-    {
-      title: "WANDS  世界が終るまでは  THE FIRST TAKE",
-      url: video5,
     },
   ];
   const [currentAudioIndex, setCurrentAudioIndex] = useState(0);
