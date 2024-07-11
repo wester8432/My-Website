@@ -11,6 +11,7 @@ import video1 from "../../assets/WANDS - 世界が終るまでは….mp4";
 import video2 from "../../assets/優里 - ドライフラワー _ THE FIRST TAKE.mp4";
 import video3 from "../../assets/結束バンド - ギターと孤独と蒼い惑星  THE FIRST TAKE.mp4";
 import video4 from "../../assets/緑黄色社会 - Shout Baby _ THE FIRST TAKE.mp4";
+import video5 from "../../assets/DISH__ (北村匠海) - 猫 _ THE FIRST TAKE.mp4";
 export default function VideoPlayer() {
   let playlist = [
     {
@@ -28,6 +29,10 @@ export default function VideoPlayer() {
     {
       title: "緑黄色社会  Shout Baby  THE FIRST TAKE",
       url: video4,
+    },
+    {
+      title: "DISH__ (北村匠海) - 猫 _ THE FIRST TAKE",
+      url: video5,
     },
   ];
   const [currentAudioIndex, setCurrentAudioIndex] = useState(0);

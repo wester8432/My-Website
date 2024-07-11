@@ -96,7 +96,7 @@ const LolFreeHero = () => {
           <IsLoading text="Is Loading..." />
         </div>
       ) : error ? (
-        <div>{error}</div>
+        <div className=" text-red-500 mt-4">Error:{error}</div>
       ) : (
         freeChampion && (
           <div className="mt-8">
