@@ -5,6 +5,7 @@ import LolFreeHero from "../SubPage/portfolio/LolFreeHero";
 import VideoPlayer from "../SubPage/portfolio/VideoPlayer";
 import style from "../scss/Animation.module.scss";
 import ShoppingWeb from "../SubPage/portfolio/ShoppingWeb";
+import Comprehensive from "../SubPage/portfolio/GithubSearch";
 const Portfolio = () => {
   const portfolio = [
     {
@@ -19,6 +20,11 @@ const Portfolio = () => {
     },
     { name: "播放器", ele: <VideoPlayer />, description: "自製播放器" },
     { name: "電商作品", ele: <ShoppingWeb />, description: "電商作品" },
+    {
+      name: "GithubSearch",
+      ele: <Comprehensive />,
+      description: "Github搜尋API",
+    },
   ];
 
   const [expandedIndex, setExpandedIndex] = useState([]);
