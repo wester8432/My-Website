@@ -131,7 +131,11 @@ const LolSearch = () => {
           英雄聯盟 對戰紀錄查詢
           <br />
           <br />
-          如果沒玩英雄聯盟 可以搜尋N1ro 7414
+          如果沒玩英雄聯盟 可以搜尋 N1ro 2486
+          <br />
+          <span className=" text-red-500">
+            ●近期新模式加入 若有遊玩新模式 在查詢上可能會有錯誤
+          </span>
         </p>
         <label>
           名稱
