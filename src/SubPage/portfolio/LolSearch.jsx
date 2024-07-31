@@ -209,7 +209,7 @@ const LolSearch = () => {
                 const itemData = item.data[itemId];
                 return itemData
                   ? {
-                      src: `https://ddragon.leagueoflegends.com/cdn/14.13.1/img/item/${itemData.image.full}`,
+                      src: `https://ddragon.leagueoflegends.com/cdn/14.15.1/img/item/${itemData.image.full}`,
                       title: itemData.name,
                     }
                   : null;
@@ -250,7 +250,7 @@ const LolSearch = () => {
                         <img
                           title={championData.name}
                           className="w-20 h-20 object-contain"
-                          src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${championData.image.full}`}
+                          src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/champion/${championData.image.full}`}
                         />
                         <p>
                           {userParticipant.kills}/{userParticipant.deaths}/
@@ -264,13 +264,13 @@ const LolSearch = () => {
                     <div>
                       <img
                         className="w-12 h-12 object-contain"
-                        src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/spell/${summoner1.image.full}`}
+                        src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/spell/${summoner1.image.full}`}
                         alt={summoner1.name}
                         title={summoner1.name}
                       />
                       <img
                         className="w-12 h-12 object-contain mt-4"
-                        src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/spell/${summoner2.image.full}`}
+                        src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/spell/${summoner2.image.full}`}
                         alt={summoner2.name}
                         title={summoner2.name}
                       />
@@ -318,7 +318,7 @@ const LolSearch = () => {
                               <>
                                 <img
                                   className="w-12 h-12 object-contain"
-                                  src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${champion.image.full}`}
+                                  src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/champion/${champion.image.full}`}
                                   alt={champion.name}
                                   title={champion.name}
                                 />
@@ -350,7 +350,7 @@ const LolSearch = () => {
                               <>
                                 <img
                                   className="w-12 h-12 object-contain"
-                                  src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${champion.image.full}`}
+                                  src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/champion/${champion.image.full}`}
                                   alt={champion.name}
                                   title={champion.name}
                                 />

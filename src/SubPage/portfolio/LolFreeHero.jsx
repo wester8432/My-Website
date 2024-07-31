@@ -108,7 +108,7 @@ const LolFreeHero = () => {
                   <li key={champion} className="mt-4">
                     <img
                       className=" object-contain"
-                      src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${championData.image.full}`}
+                      src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/champion/${championData.image.full}`}
                       alt={championData.name}
                     />
                     <p>{championData.name}</p>
@@ -130,7 +130,7 @@ const LolFreeHero = () => {
                 <li key={champion} className="mt-4">
                   <img
                     className=" object-contain"
-                    src={`https://ddragon.leagueoflegends.com/cdn/14.13.1/img/champion/${championData.image.full}`}
+                    src={`https://ddragon.leagueoflegends.com/cdn/14.15.1/img/champion/${championData.image.full}`}
                     alt={championData.name}
                   />
                   <p>{championData.name}</p>
